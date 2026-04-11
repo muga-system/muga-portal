@@ -21,3 +21,6 @@ coverage/
 
 # TypeScript
 *.tsbuildinfo
+
+# Supabase local state
+**/supabase/.temp/
