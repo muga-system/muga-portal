@@ -1,0 +1,40 @@
+{
+  "assets": [
+    {
+      "url": "TBD_LOGO_NODE_URL",
+      "name": "logo-muga"
+    },
+    {
+      "url": "TBD_ICON_LAYERS_NODE_URL",
+      "name": "icon-layers"
+    },
+    {
+      "url": "TBD_ICON_SHIELD_USER_NODE_URL",
+      "name": "icon-shield-user"
+    },
+    {
+      "url": "TBD_ICON_DRAFTING_COMPASS_NODE_URL",
+      "name": "icon-drafting-compass"
+    },
+    {
+      "url": "TBD_ICON_LIST_CHECKS_NODE_URL",
+      "name": "icon-list-checks"
+    },
+    {
+      "url": "TBD_ICON_BADGE_CHECK_NODE_URL",
+      "name": "icon-badge-check"
+    },
+    {
+      "url": "TBD_ICON_BRAIN_COG_NODE_URL",
+      "name": "icon-brain-cog"
+    },
+    {
+      "url": "TBD_ICON_PACKAGE_PLUS_NODE_URL",
+      "name": "icon-package-plus"
+    },
+    {
+      "url": "TBD_ICON_MESSAGE_SQUARE_TEXT_NODE_URL",
+      "name": "icon-message-square-text"
+    }
+  ]
+}

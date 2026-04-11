@@ -1,0 +1,21 @@
+{
+  "name": "muga-platform",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.32.1",
+  "scripts": {
+    "dev": "pnpm --parallel --filter web --filter cliente --filter api dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:cliente": "pnpm --filter cliente dev",
+    "dev:api": "pnpm --filter api dev",
+    "build": "pnpm -r --if-present build",
+    "lint": "pnpm -r --if-present lint",
+    "figma:doctor": "node scripts/figma/doctor.mjs",
+    "figma:pull:file": "node scripts/figma/fetch-file.mjs",
+    "figma:pull:variables": "node scripts/figma/fetch-variables.mjs",
+    "figma:pull": "node scripts/figma/pull.mjs",
+    "figma:export:assets": "node scripts/figma/export-images.mjs",
+    "figma:audit:components": "node scripts/figma/audit-components.mjs",
+    "figma:audit:screens": "node scripts/figma/audit-screens.mjs"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "generatedAt": "2026-04-04T11:34:43.563Z",
+  "inputPath": "design/figma/snapshots/file-raw.json",
+  "pageId": "9:4",
+  "counts": {
+    "componentSets": 11,
+    "components": 34,
+    "mugaFrames": 0
+  },
+  "required": {
+    "total": 11,
+    "found": 11,
+    "missing": []
+  },
+  "variantAudit": [
+    {
+      "component": "Muga/Hero/PageHero",
+      "requiredKeys": [
+        "Variant"
+      ],
+      "foundKeys": [
+        "Variant",
+        "Aside"
+      ],
+      "ok": true,
+      "missingKeys": []
+    },
+    {
+      "component": "Muga/Badge/Base",
+      "requiredKeys": [
+        "Size"
+      ],
+      "foundKeys": [
+        "Size",
+        "State"
+      ],
+      "ok": true,
+      "missingKeys": []
+    },
+    {
+      "component": "Muga/Surface/Card",
+      "requiredKeys": [
+        "State"
+      ],
+      "foundKeys": [
+        "State"
+      ],
+      "ok": true,
+      "missingKeys": []
+    },
+    {
+      "component": "Muga/Link/Secondary",
+      "requiredKeys": [
+        "State"
+      ],
+      "foundKeys": [
+        "State"
+      ],
+      "ok": true,
+      "missingKeys": []
+    },
+    {
+      "component": "Muga/Form/Input",
+      "requiredKeys": [
+        "State"
+      ],
+      "foundKeys": [
+        "State"
+      ],
+      "ok": true,
+      "missingKeys": []
+    },
+    {
+      "component": "Muga/Form/Select",
+      "requiredKeys": [
+        "State"
+      ],
+      "foundKeys": [
+        "State"
+      ],
+      "ok": true,
+      "missingKeys": []
+    },
+    {
+      "component": "Muga/Form/Textarea",
+      "requiredKeys": [
+        "State"
+      ],
+      "foundKeys": [
+        "State"
+      ],
+      "ok": true,
+      "missingKeys": []
+    },
+    {
+      "component": "Muga/Form/Submit",
+      "requiredKeys": [
+        "State"
+      ],
+      "foundKeys": [
+        "State"
+      ],
+      "ok": true,
+      "missingKeys": []
+    },
+    {
+      "component": "Muga/Form/ErrorMessage",
+      "requiredKeys": [
+        "State"
+      ],
+      "foundKeys": [
+        "State"
+      ],
+      "ok": true,
+      "missingKeys": []
+    }
+  ],
+  "extra": [],
+  "ok": true
+}

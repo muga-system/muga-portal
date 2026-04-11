@@ -1,0 +1,410 @@
+{
+  "pulledAt": "2026-04-04T11:34:41.505Z",
+  "fileKey": "QrJQQfCKrZdeDPMMLLcXAr",
+  "name": "CONECCION MUGA OPENCODE FIGMA",
+  "version": "2338542515112297023",
+  "lastModified": "2026-04-04T11:34:40Z",
+  "pages": [
+    {
+      "id": "0:1",
+      "name": "00 Foundations",
+      "childCount": 1
+    },
+    {
+      "id": "9:4",
+      "name": "01 Components",
+      "childCount": 6
+    },
+    {
+      "id": "9:5",
+      "name": "02 Screens",
+      "childCount": 0
+    }
+  ],
+  "counts": {
+    "pages": 3,
+    "components": 34,
+    "componentSets": 11,
+    "styles": 40
+  },
+  "components": [
+    {
+      "key": "11:7",
+      "name": "State=desktop, Link=default",
+      "componentSetId": "11:104"
+    },
+    {
+      "key": "11:21",
+      "name": "State=desktop, Link=active",
+      "componentSetId": "11:104"
+    },
+    {
+      "key": "11:36",
+      "name": "State=desktop, Link=hover",
+      "componentSetId": "11:104"
+    },
+    {
+      "key": "11:51",
+      "name": "State=mobile-closed, Link=default",
+      "componentSetId": "11:104"
+    },
+    {
+      "key": "11:58",
+      "name": "State=mobile-open, Link=active",
+      "componentSetId": "11:104"
+    },
+    {
+      "key": "11:81",
+      "name": "State=mobile-open, Link=hover",
+      "componentSetId": "11:104"
+    },
+    {
+      "key": "11:110",
+      "name": "State=default",
+      "componentSetId": "11:135"
+    },
+    {
+      "key": "11:141",
+      "name": "Variant=default, Aside=off",
+      "componentSetId": "11:187"
+    },
+    {
+      "key": "11:152",
+      "name": "Variant=feature, Aside=on",
+      "componentSetId": "11:187"
+    },
+    {
+      "key": "11:177",
+      "name": "Variant=minimal, Aside=off",
+      "componentSetId": "11:187"
+    },
+    {
+      "key": "11:193",
+      "name": "Size=sm, State=default",
+      "componentSetId": "11:197"
+    },
+    {
+      "key": "11:195",
+      "name": "Size=md, State=default",
+      "componentSetId": "11:197"
+    },
+    {
+      "key": "11:203",
+      "name": "State=default",
+      "componentSetId": "11:213"
+    },
+    {
+      "key": "11:208",
+      "name": "State=hover",
+      "componentSetId": "11:213"
+    },
+    {
+      "key": "11:214",
+      "name": "State=default",
+      "componentSetId": "11:226"
+    },
+    {
+      "key": "11:218",
+      "name": "State=hover",
+      "componentSetId": "11:226"
+    },
+    {
+      "key": "11:222",
+      "name": "State=focus",
+      "componentSetId": "11:226"
+    },
+    {
+      "key": "11:232",
+      "name": "State=default",
+      "componentSetId": "11:249"
+    },
+    {
+      "key": "11:236",
+      "name": "State=focus",
+      "componentSetId": "11:249"
+    },
+    {
+      "key": "11:240",
+      "name": "State=error",
+      "componentSetId": "11:249"
+    },
+    {
+      "key": "11:245",
+      "name": "State=disabled",
+      "componentSetId": "11:249"
+    },
+    {
+      "key": "11:250",
+      "name": "State=default",
+      "componentSetId": "11:271"
+    },
+    {
+      "key": "11:255",
+      "name": "State=focus",
+      "componentSetId": "11:271"
+    },
+    {
+      "key": "11:260",
+      "name": "State=error",
+      "componentSetId": "11:271"
+    },
+    {
+      "key": "11:266",
+      "name": "State=disabled",
+      "componentSetId": "11:271"
+    },
+    {
+      "key": "11:272",
+      "name": "State=default",
+      "componentSetId": "11:289"
+    },
+    {
+      "key": "11:276",
+      "name": "State=focus",
+      "componentSetId": "11:289"
+    },
+    {
+      "key": "11:280",
+      "name": "State=error",
+      "componentSetId": "11:289"
+    },
+    {
+      "key": "11:285",
+      "name": "State=disabled",
+      "componentSetId": "11:289"
+    },
+    {
+      "key": "11:290",
+      "name": "State=default",
+      "componentSetId": "11:307"
+    },
+    {
+      "key": "11:294",
+      "name": "State=hover",
+      "componentSetId": "11:307"
+    },
+    {
+      "key": "11:298",
+      "name": "State=disabled",
+      "componentSetId": "11:307"
+    },
+    {
+      "key": "11:302",
+      "name": "State=loading",
+      "componentSetId": "11:307"
+    },
+    {
+      "key": "11:308",
+      "name": "State=default",
+      "componentSetId": "11:311"
+    }
+  ],
+  "componentSets": [
+    {
+      "key": "11:104",
+      "name": "Muga/Navigation/SiteNavigation"
+    },
+    {
+      "key": "11:135",
+      "name": "Muga/Layout/SiteFooter"
+    },
+    {
+      "key": "11:187",
+      "name": "Muga/Hero/PageHero"
+    },
+    {
+      "key": "11:197",
+      "name": "Muga/Badge/Base"
+    },
+    {
+      "key": "11:213",
+      "name": "Muga/Surface/Card"
+    },
+    {
+      "key": "11:226",
+      "name": "Muga/Link/Secondary"
+    },
+    {
+      "key": "11:249",
+      "name": "Muga/Form/Input"
+    },
+    {
+      "key": "11:271",
+      "name": "Muga/Form/Select"
+    },
+    {
+      "key": "11:289",
+      "name": "Muga/Form/Textarea"
+    },
+    {
+      "key": "11:307",
+      "name": "Muga/Form/Submit"
+    },
+    {
+      "key": "11:311",
+      "name": "Muga/Form/ErrorMessage"
+    }
+  ],
+  "styles": [
+    {
+      "key": "9:62",
+      "name": "type/section-title/desktop"
+    },
+    {
+      "key": "9:63",
+      "name": "type/section-title/tablet"
+    },
+    {
+      "key": "9:64",
+      "name": "type/section-title/mobile"
+    },
+    {
+      "key": "9:65",
+      "name": "type/section-lead/desktop"
+    },
+    {
+      "key": "9:66",
+      "name": "type/section-lead/tablet"
+    },
+    {
+      "key": "9:67",
+      "name": "type/section-lead/mobile"
+    },
+    {
+      "key": "9:68",
+      "name": "color/brand/accent"
+    },
+    {
+      "key": "9:69",
+      "name": "color/brand/accent-md"
+    },
+    {
+      "key": "9:70",
+      "name": "color/brand/accent-xs"
+    },
+    {
+      "key": "9:71",
+      "name": "color/bg/obscure"
+    },
+    {
+      "key": "9:72",
+      "name": "color/bg/mugagray"
+    },
+    {
+      "key": "9:73",
+      "name": "color/text/graylight"
+    },
+    {
+      "key": "9:74",
+      "name": "color/semantic/background"
+    },
+    {
+      "key": "9:75",
+      "name": "color/semantic/foreground"
+    },
+    {
+      "key": "9:76",
+      "name": "color/semantic/card"
+    },
+    {
+      "key": "9:77",
+      "name": "color/semantic/card-foreground"
+    },
+    {
+      "key": "9:78",
+      "name": "color/semantic/popover"
+    },
+    {
+      "key": "9:79",
+      "name": "color/semantic/popover-foreground"
+    },
+    {
+      "key": "9:80",
+      "name": "color/semantic/primary"
+    },
+    {
+      "key": "9:81",
+      "name": "color/semantic/primary-foreground"
+    },
+    {
+      "key": "9:82",
+      "name": "color/semantic/secondary"
+    },
+    {
+      "key": "9:83",
+      "name": "color/semantic/secondary-foreground"
+    },
+    {
+      "key": "9:84",
+      "name": "color/semantic/muted"
+    },
+    {
+      "key": "9:85",
+      "name": "color/semantic/muted-foreground"
+    },
+    {
+      "key": "9:86",
+      "name": "color/semantic/accent"
+    },
+    {
+      "key": "9:87",
+      "name": "color/semantic/accent-foreground"
+    },
+    {
+      "key": "9:88",
+      "name": "color/semantic/destructive"
+    },
+    {
+      "key": "9:89",
+      "name": "color/semantic/destructive-foreground"
+    },
+    {
+      "key": "9:90",
+      "name": "color/semantic/success"
+    },
+    {
+      "key": "9:91",
+      "name": "color/semantic/success-foreground"
+    },
+    {
+      "key": "9:92",
+      "name": "color/semantic/warning"
+    },
+    {
+      "key": "9:93",
+      "name": "color/semantic/warning-foreground"
+    },
+    {
+      "key": "9:94",
+      "name": "color/semantic/info"
+    },
+    {
+      "key": "9:95",
+      "name": "color/semantic/info-foreground"
+    },
+    {
+      "key": "9:96",
+      "name": "color/semantic/border"
+    },
+    {
+      "key": "9:97",
+      "name": "color/semantic/input"
+    },
+    {
+      "key": "9:98",
+      "name": "color/semantic/ring"
+    },
+    {
+      "key": "9:99",
+      "name": "focus/ring/color"
+    },
+    {
+      "key": "9:100",
+      "name": "focus/ring/offset-bg"
+    },
+    {
+      "key": "9:101",
+      "name": "selection/bg"
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+@import "tailwindcss";
+@import "../../../../packages/ui/styles/muga-theme.css";
+
+@layer base {
+  html {
+    scrollbar-color: rgba(95, 95, 95, 0.6) var(--color-obscure);
+    scrollbar-width: auto;
+  }
+
+  * {
+    scrollbar-color: rgba(95, 95, 95, 0.6) var(--color-obscure);
+    scrollbar-width: auto;
+  }
+
+  *::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--color-obscure);
+    border-radius: 0;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgba(95, 95, 95, 0.6);
+    border-radius: 0;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(130, 130, 130, 0.78);
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: var(--color-obscure);
+  }
+}
+
+@layer components {
+  :where(h1, h2, h3) {
+    text-wrap: balance;
+    scroll-margin-top: calc(var(--layout-header-offset) + 1rem);
+  }
+
+  :where(p, li) {
+    text-wrap: pretty;
+  }
+
+  .faq-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
+    color: var(--color-accent);
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-summary__icon {
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.68);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  details[open] .faq-summary__icon {
+    color: #fff;
+    transform: rotate(90deg);
+  }
+
+  .layout-divider-bottom {
+    position: relative;
+    border-bottom: 0;
+  }
+
+  .layout-divider-bottom::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: var(--layout-divider-width);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .divider-header-gap {
+    padding-top: var(--layout-divider-header-gap);
+  }
+
+  .divider-gap-top {
+    margin-top: var(--layout-divider-header-gap);
+  }
+
+  .form-panel-dots {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .form-panel-dots::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.13) 1px, transparent 1.2px);
+    background-size: 12px 12px;
+    opacity: 0.52;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.35));
+  }
+
+  .faq-row {
+    position: relative;
+    background-color: rgba(45, 31, 31, 0.2) !important;
+  }
+
+  .faq-row[open] {
+    background-color: rgba(45, 31, 31, 0.26) !important;
+  }
+
+  .faq-answer {
+    color: color-mix(in srgb, var(--color-accent) 70%, white 30%);
+  }
+
+  .faq-row--line::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: var(--layout-divider-width);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+}
+
+.bento-cell {
+  position: relative;
+  transition: border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.light-effect {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(255, 83, 83, 0.5);
+  pointer-events: none;
+  filter: blur(100px);
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.bento-cell > *:not(.light-effect) {
+  position: relative;
+  z-index: 2;
+}
+
+  .bento-card {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: border-color 0.24s ease;
+  }
+
+  .bento-card:hover {
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .navbar-scrolled {
+    background-color: color-mix(in srgb, var(--color-obscure) 92%, black 8%);
+    backdrop-filter: saturate(120%) blur(6px);
+  }
+
+.icon-with-blur-effect {
+  opacity: 0;
+  filter: blur(var(--blur-amount, 3px));
+  transition: filter 0.3s ease, opacity 0.3s ease;
+  will-change: opacity, filter, mask-image, -webkit-mask-image;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-summary__icon,
+  .light-effect,
+  .icon-with-blur-effect,
+  .bento-cell {
+    transition: none;
+    animation: none;
+  }
+}

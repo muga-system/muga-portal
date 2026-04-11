@@ -1,0 +1,439 @@
+@import "tailwindcss";
+@import "../../../../packages/ui/styles/muga-theme.css";
+
+@layer base {
+  :root {
+    --admin-topbar-height: 3rem;
+    --muga-admin-sidebar-footer-height: 3rem;
+    --layout-side-trama-width: 48px;
+    --layout-side-trama-max: 48px;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  html {
+    scrollbar-color: rgba(95, 95, 95, 0.6) var(--color-obscure);
+    scrollbar-width: auto;
+  }
+
+  * {
+    scrollbar-color: rgba(95, 95, 95, 0.6) var(--color-obscure);
+    scrollbar-width: auto;
+  }
+
+  *::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--color-obscure);
+    border-radius: 0;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgba(95, 95, 95, 0.6);
+    border-radius: 0;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(130, 130, 130, 0.78);
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: var(--color-obscure);
+  }
+}
+
+@layer components {
+  .page-container {
+    padding-inline: 0;
+  }
+
+  .muga-client-bg {
+    background-color: var(--color-obscure);
+    background-image: none;
+  }
+
+  .muga-auth-plain {
+    background-color: var(--color-obscure);
+    background-image: none;
+  }
+
+  .muga-auth-trama {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: max(2.25rem, var(--layout-side-trama-width));
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent 0 10px,
+      rgba(255, 255, 255, var(--layout-side-trama-alpha)) 10px 11px
+    );
+    pointer-events: none;
+    opacity: 1;
+  }
+
+  .muga-auth-trama--left {
+    left: calc(50% - (var(--layout-frame-width) / 2) - max(2.25rem, var(--layout-side-trama-width)));
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .muga-auth-trama--right {
+    right: calc(50% - (var(--layout-frame-width) / 2) - max(2.25rem, var(--layout-side-trama-width)));
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .muga-auth-form-dots {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .muga-auth-form-dots::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.13) 1px, transparent 1.2px);
+    background-size: 12px 12px;
+    opacity: 0.45;
+  }
+
+  .muga-auth-form-dots > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .muga-shell-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(25, 23, 23, 0.92);
+    backdrop-filter: blur(4px);
+  }
+
+  .muga-shell-header-frame {
+    width: var(--layout-frame-width);
+    border-inline: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .muga-shell-main {
+    padding-top: var(--layout-divider-header-gap);
+    padding-bottom: var(--layout-divider-header-gap);
+  }
+
+  .muga-shell-divider {
+    position: relative;
+  }
+
+  .muga-shell-divider::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: var(--layout-divider-width);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .muga-shell-panel {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: color-mix(in oklab, var(--color-obscure) 90%, white 10%);
+  }
+
+  .muga-shell-section {
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background-color: rgba(24, 23, 23, 0.72);
+  }
+
+  .muga-shell-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.2rem;
+    border: 1px solid transparent;
+    padding-inline: 0.65rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-graylight);
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .muga-shell-link:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  .muga-shell-link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-accent), 0 0 0 4px var(--color-obscure);
+  }
+
+  .muga-shell-link[data-active="true"] {
+    color: #fff;
+    border-color: rgba(255, 83, 83, 0.5);
+    background-color: rgba(255, 83, 83, 0.12);
+  }
+
+  .muga-kicker {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: hsl(var(--primary));
+  }
+
+  .muga-surface-subtle {
+    background-color: color-mix(in oklab, hsl(var(--muted)) 55%, transparent);
+  }
+
+  .muga-inline-note {
+    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--card));
+    color: hsl(var(--muted-foreground));
+  }
+
+  .muga-nav-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.2rem;
+    border: 1px solid transparent;
+    padding-inline: 0.65rem;
+    padding-block: 0.25rem;
+    color: var(--color-graylight);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .muga-nav-link:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  .muga-nav-link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-accent), 0 0 0 4px var(--color-obscure);
+  }
+
+  .muga-nav-link[data-active="true"] {
+    color: #fff;
+    border-color: rgba(255, 83, 83, 0.5);
+    background-color: rgba(255, 83, 83, 0.12);
+  }
+
+  .muga-help-text {
+    font-size: 0.8125rem;
+    color: var(--color-graylight);
+  }
+
+  .muga-btn-primary {
+    display: inline-flex;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 83, 83, 0.5);
+    background-color: var(--color-accent);
+    padding-inline: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .muga-btn-primary:hover {
+    border-color: rgba(255, 83, 83, 0.75);
+    background-color: color-mix(in oklab, var(--color-accent) 88%, black);
+  }
+
+  .muga-btn-outline {
+    display: inline-flex;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background-color: rgba(24, 23, 23, 0.72);
+    padding-inline: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fff;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .muga-btn-outline:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .muga-app-footer {
+    background-color: rgba(25, 23, 23, 0.92);
+  }
+
+  .muga-admin-sidebar {
+    background-color: rgba(24, 23, 23, 0.76);
+  }
+
+  .muga-admin-mobile-header {
+    background-color: rgba(25, 23, 23, 0.92);
+    backdrop-filter: blur(4px);
+  }
+
+  .muga-admin-topbar {
+    position: relative;
+    background-color: transparent;
+  }
+
+  .muga-admin-topbar-frame {
+    background-color: rgba(25, 23, 23, 0.96);
+    backdrop-filter: blur(4px);
+  }
+
+  .muga-admin-topbar::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: var(--layout-frame-width);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .muga-admin-content {
+    background-color: rgba(24, 23, 23, 0.38);
+  }
+
+  .muga-admin-sidebar-footer {
+    height: var(--muga-admin-sidebar-footer-height);
+  }
+
+  .muga-admin-nav-link {
+    display: inline-flex;
+    width: 100%;
+    height: 48px;
+    min-height: 48px;
+    align-items: center;
+    gap: 0.55rem;
+    padding-inline: 1rem;
+    padding-block: 0.35rem;
+    color: var(--color-graylight);
+    font-size: 0.8rem;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .muga-admin-nav-link:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  .muga-admin-nav-link[data-active="true"] {
+    color: var(--color-accent);
+    background-color: rgba(255, 83, 83, 0.12);
+    box-shadow: inset 2px 0 0 rgba(255, 83, 83, 0.75);
+  }
+
+  .muga-admin-nav-link--logout {
+    height: 100%;
+    min-height: 0 !important;
+    max-height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-block: 0;
+    line-height: 1;
+  }
+
+  .muga-admin-nav-link--danger {
+    color: var(--color-accent);
+    background-color: rgba(255, 83, 83, 0.1);
+    box-shadow: inset 2px 0 0 rgba(255, 83, 83, 0.72);
+  }
+
+  .muga-admin-nav-link--danger span,
+  .muga-admin-nav-link--danger svg {
+    color: var(--color-accent);
+  }
+
+  .muga-admin-nav-link--danger:hover {
+    background-color: rgba(255, 83, 83, 0.18);
+    box-shadow: inset 2px 0 0 rgba(255, 83, 83, 0.9);
+  }
+
+  @media (min-width: 1024px) {
+    .muga-admin-sidebar-footer {
+      height: var(--muga-admin-sidebar-footer-height);
+    }
+  }
+
+  .muga-doc-scroll-native-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .muga-doc-scroll-native-hidden::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  .muga-doc-scroll-track {
+    background: var(--color-obscure);
+  }
+
+  .muga-doc-scroll-thumb {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 0;
+    box-sizing: border-box;
+  }
+
+  .muga-modal-overlay {
+    animation: muga-fade-in 180ms ease-out;
+  }
+
+  .muga-modal-panel {
+    transform-origin: center;
+    animation: muga-modal-in 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @keyframes muga-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes muga-modal-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes progress-primary {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-progress-primary {
+    animation: progress-primary 2s ease-in-out infinite;
+  }
+}
