@@ -18,6 +18,8 @@
   --color-form-field: rgba(24, 23, 23, 0.7);
   --color-mugagray: #302e2e;
   --color-graylight: #a0a0a0;
+  --font-geist-sans: "Segoe UI", "Inter", "Helvetica Neue", Arial, system-ui, -apple-system, sans-serif;
+  --font-geist-mono: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   --background: 0 4% 9%;
   --foreground: 0 0% 96%;

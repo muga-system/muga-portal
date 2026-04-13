@@ -48,9 +48,11 @@ Checklist rapido para publicar `muga.dev` (marketing) y `cliente.muga.dev` (plat
 - Link de invitacion (`/acceso/<slug>?inv=<token>`) redirige a `/login?invited=1`.
 - Login funciona y callback no falla.
 - `/internal/projects` responde autenticado.
+- `pnpm smoke:e2e` en entorno local/staging sin errores.
 
 ## 6) Validacion tecnica
 
 - `pnpm lint` sin errores.
 - `pnpm build` sin errores.
+- `pnpm smoke:release` sin errores.
 - Revisar warning pendiente en `apps/cliente/src/proxy.ts:18` si se desea cerrar antes de produccion.

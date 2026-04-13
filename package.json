@@ -10,6 +10,8 @@
     "dev:api": "pnpm --filter api dev",
     "build": "pnpm -r --if-present build",
     "lint": "pnpm -r --if-present lint",
+    "smoke:release": "bash scripts/smoke/release-readiness.sh",
+    "smoke:e2e": "bash scripts/smoke/e2e-critical-flows.sh",
     "figma:doctor": "node scripts/figma/doctor.mjs",
     "figma:pull:file": "node scripts/figma/fetch-file.mjs",
     "figma:pull:variables": "node scripts/figma/fetch-variables.mjs",

@@ -46,7 +46,21 @@ pnpm dev:cliente
 pnpm dev:api
 pnpm lint
 pnpm build
+pnpm smoke:release
+pnpm smoke:e2e
 ```
+
+## Smoke tests de release
+
+- `pnpm smoke:release`: validaciones estructurales rapidas (sin levantar servicios).
+- `pnpm smoke:e2e`: smoke E2E de flujos criticos via HTTP real.
+
+`smoke:e2e` levanta `web` y `cliente` en modo produccion, ejecuta casos clave y apaga ambos procesos:
+
+1. `POST /api/contacto` con content-type invalido -> `400`.
+2. `POST /api/contacto` sin email -> `400`.
+3. `POST /admin/leads/abc/approve` -> redirect con `leadError=invalid-id`.
+4. `GET /portal` sin sesion -> redirect a `/acceso`.
 
 ## Variables de entorno
 

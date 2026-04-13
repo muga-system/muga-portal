@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import { SiteNavigation } from "@/components/site-navigation";
@@ -7,16 +6,6 @@ import { SiteFooter } from "@/components/site-footer";
 import { LayoutFrameDecor } from "@/components/layout-frame-decor";
 import { SiteBreadcrumb } from "@/components/site-breadcrumb";
 import { AnalyticsTracker } from "@/components/analytics-tracker";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "MUGA - Arquitectura web para conversión",
@@ -39,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang="es" className="h-full antialiased">
       <body className="min-h-full flex flex-col overflow-x-clip">
         <a
           href="#main-content"
