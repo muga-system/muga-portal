@@ -91,6 +91,9 @@ export function SiteFooter() {
           <Link href="https://muga.studio" className="transition-colors hover:text-white">
             MUGA Studio
           </Link>
+          <Link href="/admin" className="ml-2 font-mono text-muted-foreground/50 transition-colors hover:text-primary">
+            v1.0
+          </Link>
         </div>
       </div>
     </footer>
