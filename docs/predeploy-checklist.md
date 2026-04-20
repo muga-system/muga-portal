@@ -2,6 +2,10 @@
 
 Checklist rapido para publicar `muga.dev` (marketing) y `cliente.muga.dev` (plataforma).
 
+Runbook completo:
+
+- `docs/deployment-hostinger-vercel.md`
+
 ## 1) Variables de entorno
 
 ### apps/web
@@ -40,6 +44,7 @@ Checklist rapido para publicar `muga.dev` (marketing) y `cliente.muga.dev` (plat
 
 - Deploy `apps/web` y `apps/cliente`.
 - Verificar HTTPS activo en ambos dominios.
+- `apps/api` no se despliega en esta fase.
 
 ## 5) Smoke test final
 

@@ -24,3 +24,4 @@ coverage/
 
 # Supabase local state
 **/supabase/.temp/
+.vercel

@@ -75,6 +75,7 @@ Permite que los CTAs de marketing apunten al dominio del portal cliente segun en
 Checklist de salida a produccion:
 
 - `docs/predeploy-checklist.md`
+- `docs/deployment-hostinger-vercel.md`
 
 Arquitectura visual oficial (`apps/web`):
 

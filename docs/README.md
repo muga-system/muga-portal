@@ -22,3 +22,4 @@ Indice operativo y tecnico del proyecto.
 ## Release
 
 - `docs/predeploy-checklist.md`
+- `docs/deployment-hostinger-vercel.md`
