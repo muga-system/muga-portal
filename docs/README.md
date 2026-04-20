@@ -1,13 +1,8 @@
-# Documentacion
+# Documentación
 
-Indice operativo y tecnico del proyecto.
+Índice operativo y técnico del proyecto.
 
-## Visual / UX
-
-- `docs/design-contract.md`
-- `docs/web-design-architecture.md`
-
-## Operacion (estado actual real)
+## Operación
 
 - `docs/operations/executive-overview.md`
 - `docs/operations/workflow-end-to-end.md`
@@ -15,7 +10,7 @@ Indice operativo y tecnico del proyecto.
 - `docs/operations/client-portal-guide.md`
 - `docs/operations/onboarding-and-access.md`
 
-## Arquitectura de comunicacion
+## Arquitectura
 
 - `docs/architecture/system-communication-map.md`
 

@@ -11,7 +11,7 @@ interface WorldLeadsMapProps {
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'
 const ARGENTINA_GEO_URL =
-  'https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/ARG/ADM1/geoBoundaries-ARG-ADM1_simplified.geojson'
+  'https://cdn.jsdelivr.net/npm/@wmgeolab/geo-boundaries@9469f09/gbOpen/ARG/ADM1/geoBoundaries-ARG-ADM1_simplified.geojson'
 
 const COUNTRY_NAME_ALIASES: Record<string, string[]> = {
   AR: ['Argentina'],
