@@ -19,6 +19,7 @@ export interface AdminNavItem {
 }
 
 export const ADMIN_NAV_ITEMS: AdminNavItem[] = [
+  { key: 'dashboard', label: 'Dashboard', href: '/admin/dashboard', icon: 'house' },
   { key: 'leads', label: 'Leads', href: '/admin/leads', icon: 'inbox' },
   { key: 'analytics', label: 'Analytics', href: '/admin/analytics', icon: 'chart' },
   { key: 'clients', label: 'Clientes', href: '/admin/clientes', icon: 'users' },

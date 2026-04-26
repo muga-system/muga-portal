@@ -94,7 +94,8 @@ export const resolveAccessContext = cache(async (): Promise<AccessContext> => {
       user,
       clientId: client.id,
     }
-  } catch {
+  } catch (error) {
+    console.error('[access-resolver] Unexpected error:', error)
     return {
       role: 'guest',
       user,

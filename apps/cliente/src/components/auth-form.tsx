@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
-import { getDemoSessionCookieName } from '@/lib/internal-access'
 import { createSupabaseBrowserClient } from '@/lib/supabase-browser'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
@@ -34,9 +33,27 @@ export function AuthForm({
   const supabase = createSupabaseBrowserClient()
   const isDemoEnabled = process.env.NEXT_PUBLIC_ENABLE_INTERNAL_DEMO_LOGIN === 'true'
 
-  const handleDemoAccess = () => {
-    document.cookie = `${getDemoSessionCookieName()}=1; Path=/; Max-Age=2592000; SameSite=Lax`
-    window.location.href = '/admin/leads'
+  const handleDemoAccess = async () => {
+    setLoading(true)
+    setError(null)
+
+    try {
+      const response = await fetch('/api/demo-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to create demo session')
+      }
+
+      window.location.href = '/admin/leads'
+    } catch (submitError) {
+      const message = submitError instanceof Error ? submitError.message : 'Error creating demo session'
+      setError(message)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {

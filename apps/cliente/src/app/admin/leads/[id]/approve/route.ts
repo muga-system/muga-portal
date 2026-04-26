@@ -62,9 +62,14 @@ export async function POST(request: Request, { params }: RouteParams) {
     approvedByUserId,
   })
 
-  if (!result) {
-    return NextResponse.redirect(new URL('/admin/leads?leadError=approve-failed', request.url))
+  if (!result || !result.success) {
+    const errorCode = result?.error?.step || 'approve-failed'
+    return NextResponse.redirect(new URL(`/admin/leads?leadError=${errorCode}`, request.url))
   }
 
-  return NextResponse.redirect(new URL(`/admin/leads?leadApproved=${leadId}&projectId=${result.projectId}`, request.url))
+  const inviteInfo = result.data.inviteUrl 
+    ? `&inviteUrl=${encodeURIComponent(result.data.inviteUrl)}`
+    : ''
+    
+  return NextResponse.redirect(new URL(`/admin/leads?leadApproved=${leadId}&projectId=${result.data.projectId}${inviteInfo}`, request.url))
 }

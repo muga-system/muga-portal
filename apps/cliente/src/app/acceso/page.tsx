@@ -56,7 +56,8 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
   const query = await searchParams
   const inviteErrorMessage = getInviteErrorMessage(query.error)
   const marketingUrl = 'https://www.muga.dev'
-  const isGoogleEnabled = process.env.NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN === 'true'
+  const googleFlag = (process.env.NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN || '').trim().toLowerCase()
+  const isGoogleEnabled = googleFlag === 'true' || googleFlag === '1' || googleFlag === 'yes'
 
   return (
     <main className="muga-auth-plain relative h-screen overflow-hidden">

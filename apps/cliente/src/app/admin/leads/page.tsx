@@ -3,7 +3,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Card, CardContent } from '@/components/ui/card'
 import { AdminLeadsHelpModal } from '@/components/leads/admin-leads-help-modal'
 import { getAdminProjectDetailHref } from '@/lib/admin-project-route'
-import { getAdminLeadsFiltered } from '@/lib/portal-data'
+import { getAdminLeadsFiltered, getAdminLeadsPaginated, type PaginatedLeadsResult, type AdminLeadIntake } from '@/lib/portal-data'
 
 interface AdminLeadsPageProps {
   searchParams: Promise<{
@@ -20,6 +20,9 @@ interface AdminLeadsPageProps {
     followup_update?: string
     ready?: string
     stale?: string
+    page?: string
+    limit?: string
+    inviteUrl?: string
   }>
 }
 
@@ -288,15 +291,23 @@ export default async function AdminLeadsPage({ searchParams }: AdminLeadsPagePro
 
       {query.leadApproved ? (
         <Alert variant="success">
-          <AlertTitle>Cliente aprobado y portal habilitado</AlertTitle>
+          <AlertTitle>Lead aprobado e invitacion enviada</AlertTitle>
           <AlertDescription>
-            Se creó el acceso al portal y el proyecto inicial quedó disponible para seguimiento.
+            Se envio la invitacion al cliente. El portal estara disponible una vez que acepte la invitacion.
             {query.projectId ? (
               <span className="ml-2">
                 <Link href={getAdminProjectDetailHref(query.projectId)} className="muga-shell-link">
                   Abrir proyecto
                 </Link>
               </span>
+            ) : null}
+            {query.inviteUrl ? (
+              <div className="mt-2 text-xs">
+                <p className="text-white/70">Enlace de invitacion:</p>
+                <Link href={query.inviteUrl} className="text-primary hover:underline break-all">
+                  {query.inviteUrl}
+                </Link>
+              </div>
             ) : null}
           </AlertDescription>
         </Alert>
@@ -477,8 +488,11 @@ export default async function AdminLeadsPage({ searchParams }: AdminLeadsPagePro
 
       <Card className="muga-shell-panel">
         <CardContent className="px-0 py-0">
-          <div className="border-b border-white/10 px-4 py-3">
+          <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
             <p className="muga-badge muga-badge--sm">Todos los leads (filtrados)</p>
+            <p className="text-xs text-[var(--color-graylight)]">
+              {allLeads.length} leads {allLeads.length >= 500 && '(limite alcanzado)'}
+            </p>
           </div>
 
           <div className="hidden overflow-x-auto lg:block">

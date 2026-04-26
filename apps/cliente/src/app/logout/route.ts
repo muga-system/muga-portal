@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server'
-import { getDemoSessionCookieName } from '@/lib/internal-access'
 import { createSupabaseServerClient } from '@/lib/supabase-server'
 
 export async function GET(request: Request) {
@@ -8,10 +7,11 @@ export async function GET(request: Request) {
 
   const response = NextResponse.redirect(new URL('/acceso', request.url))
 
-  response.cookies.set(getDemoSessionCookieName(), '', {
+  response.cookies.set('internal_demo_auth', '', {
     path: '/',
     maxAge: 0,
-    httpOnly: false,
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
   })
 

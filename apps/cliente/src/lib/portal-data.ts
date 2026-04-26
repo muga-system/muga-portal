@@ -98,6 +98,19 @@ export interface AdminLeadFilters {
   utmCampaign: string
 }
 
+export interface PaginationMeta {
+  page: number
+  limit: number
+  total: number
+  totalPages: number
+  hasMore: boolean
+}
+
+export interface PaginatedLeadsResult {
+  leads: AdminLeadIntake[]
+  pagination: PaginationMeta
+}
+
 export interface AdminClientRow {
   id: string
   name: string
@@ -936,6 +949,141 @@ export async function getAdminLeadsFiltered(filters: AdminLeadFilters, limit = 5
     }))
   } catch {
     return []
+  }
+}
+
+export async function getAdminLeadsPaginated(
+  filters: AdminLeadFilters,
+  page = 1,
+  limit = 20
+): Promise<PaginatedLeadsResult> {
+  const DEFAULT_LIMIT = 20
+  const MAX_LIMIT = 100
+
+  const safeLimit = Math.min(Math.max(Math.floor(limit) || DEFAULT_LIMIT, 1), MAX_LIMIT)
+  const safePage = Math.max(Math.floor(page) || 1, 1)
+  const offset = (safePage - 1) * safeLimit
+
+  try {
+    const supabase = createSupabaseAdminClient()
+    const since = new Date(Date.now() - filters.days * 24 * 60 * 60 * 1000).toISOString()
+
+    const countQuery = supabase
+      .from('leads')
+      .select('id', { count: 'exact', head: true })
+      .gte('created_at', since)
+
+    if (filters.status !== 'all') {
+      countQuery.eq('status', filters.status)
+    }
+    if (filters.source !== 'all') {
+      countQuery.eq('source', filters.source)
+    }
+    if (filters.utmSource !== 'all') {
+      countQuery.eq('utm_source', filters.utmSource)
+    }
+    if (filters.utmCampaign !== 'all') {
+      countQuery.eq('utm_campaign', filters.utmCampaign)
+    }
+
+    const { count: total, error: countError } = await countQuery
+
+    if (countError || typeof total !== 'number') {
+      console.error('[getAdminLeadsPaginated] Count error:', countError)
+      return {
+        leads: [],
+        pagination: {
+          page: safePage,
+          limit: safeLimit,
+          total: 0,
+          totalPages: 0,
+          hasMore: false,
+        },
+      }
+    }
+
+    const totalPages = Math.ceil(total / safeLimit)
+    const hasMore = safePage < totalPages
+
+    let query = supabase
+      .from('leads')
+      .select(
+        'id, name, email, phone, project, budget, message, status, source, utm_source, utm_campaign, first_contact_at, last_contact_at, next_action, next_action_at, created_at'
+      )
+      .gte('created_at', since)
+      .order('created_at', { ascending: false })
+      .range(offset, offset + safeLimit - 1)
+
+    if (filters.status !== 'all') {
+      query = query.eq('status', filters.status)
+    }
+    if (filters.source !== 'all') {
+      query = query.eq('source', filters.source)
+    }
+    if (filters.utmSource !== 'all') {
+      query = query.eq('utm_source', filters.utmSource)
+    }
+    if (filters.utmCampaign !== 'all') {
+      query = query.eq('utm_campaign', filters.utmCampaign)
+    }
+
+    const { data, error } = await query
+
+    if (error || !data) {
+      console.error('[getAdminLeadsPaginated] Query error:', error)
+      return {
+        leads: [],
+        pagination: {
+          page: safePage,
+          limit: safeLimit,
+          total,
+          totalPages,
+          hasMore,
+        },
+      }
+    }
+
+    const leads = data.map((lead) => ({
+      id: lead.id,
+      name: lead.name || 'Sin nombre',
+      email: lead.email || '',
+      phone: lead.phone || null,
+      project: lead.project || null,
+      budget: lead.budget || null,
+      message: lead.message || '',
+      status: lead.status || 'new',
+      source: lead.source || null,
+      utmSource: lead.utm_source || null,
+      utmCampaign: lead.utm_campaign || null,
+      firstContactAt: lead.first_contact_at || null,
+      lastContactAt: lead.last_contact_at || null,
+      nextAction: lead.next_action || null,
+      nextActionAt: lead.next_action_at || null,
+      createdAt: lead.created_at || new Date().toISOString(),
+    }))
+
+    return {
+      leads,
+      pagination: {
+        page: safePage,
+        limit: safeLimit,
+        total,
+        totalPages,
+        hasMore,
+      },
+    }
+  } catch (err) {
+    console.error('[getAdminLeadsPaginated] Unexpected error:', err)
+    return {
+      leads: [],
+      pagination: {
+        page: safePage,
+        limit: safeLimit,
+        total: 0,
+        totalPages: 0,
+        hasMore: false,
+      },
+    }
   }
 }
 
