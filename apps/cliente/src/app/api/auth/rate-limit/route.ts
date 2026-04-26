@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { checkRateLimit, getRateLimitKey } from '@/lib/rate-limit'
 
-export const RATE_LIMIT_ENDPOINT = 'auth'
+const RATE_LIMIT_ENDPOINT = 'auth'
 
 export async function POST(request: Request) {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() 
