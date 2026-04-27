@@ -1,4 +1,3 @@
-import { cache } from 'react'
 import type { User } from '@supabase/supabase-js'
 import { isInternalEmail } from '@/lib/internal-access'
 import { createSupabaseServerClient } from '@/lib/supabase-server'
@@ -19,16 +18,16 @@ function getPortalStatus(value: string | null | undefined): 'invited' | 'accepte
   return 'invited'
 }
 
-const getServerUser = cache(async (): Promise<User | null> => {
+const getServerUser = async (): Promise<User | null> => {
   const supabase = await createSupabaseServerClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
   return user
-})
+}
 
-export const resolveAccessContext = cache(async (): Promise<AccessContext> => {
+export const resolveAccessContext = async (): Promise<AccessContext> => {
   const user = await getServerUser()
 
   if (!user) {
@@ -102,7 +101,7 @@ export const resolveAccessContext = cache(async (): Promise<AccessContext> => {
       clientId: null,
     }
   }
-})
+}
 
 export function getHomePathByRole(role: AccessRole) {
   if (role === 'internal_admin') {
