@@ -56,8 +56,7 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
   const query = await searchParams
   const inviteErrorMessage = getInviteErrorMessage(query.error)
   const marketingUrl = 'https://www.muga.dev'
-  const googleFlag = (process.env.NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN || '').trim().toLowerCase()
-  const isGoogleEnabled = googleFlag === 'true' || googleFlag === '1' || googleFlag === 'yes'
+  const isGoogleEnabled = true
 
   return (
     <main className="muga-auth-plain relative h-screen overflow-hidden">
@@ -122,15 +121,13 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
               <h2 className="text-2xl font-semibold tracking-tight text-white">Iniciar sesión</h2>
               <p className="mt-2 mb-6 text-sm text-[var(--color-graylight)]">
                 Usa tu cuenta cliente para entrar al portal.
-                {isGoogleEnabled ? ' Recomendado: continuar con Google.' : ' En este entorno Google está deshabilitado.'}
+                {' Recomendado: continuar con Google.'}
               </p>
 
-              {isGoogleEnabled ? (
-                <div className="mb-4 inline-flex items-center gap-2 border border-white/10 bg-white/5 px-3 py-2 text-xs text-[var(--color-graylight)]">
-                  <ShieldCheck size={14} className="text-primary" aria-hidden="true" />
-                  Serás redirigido a Google para autenticarte de forma segura.
-                </div>
-              ) : null}
+              <div className="mb-4 inline-flex items-center gap-2 border border-white/10 bg-white/5 px-3 py-2 text-xs text-[var(--color-graylight)]">
+                <ShieldCheck size={14} className="text-primary" aria-hidden="true" />
+                Serás redirigido a Google para autenticarte de forma segura.
+              </div>
 
               <AuthForm showTokenAccess={false} showGoogleAccess={isGoogleEnabled} showPasswordReset redirectPath="/portal" />
             </div>
