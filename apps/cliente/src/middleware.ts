@@ -3,7 +3,6 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { isInternalEmail } from '@/lib/internal-access'
 
 const PROTECTED_ADMIN_ROUTES = ['/admin']
-const PROTECTED_PORTAL_ROUTES = ['/portal']
 const PUBLIC_ROUTES = ['/acceso', '/login', '/register', '/ingreso-admin', '/logout', '/auth']
 
 export async function middleware(request: NextRequest) {
@@ -11,10 +10,9 @@ export async function middleware(request: NextRequest) {
 
   const isPublicRoute = PUBLIC_ROUTES.some((route) => pathname === route || pathname.startsWith(`${route}/`))
   const isProtectedAdmin = PROTECTED_ADMIN_ROUTES.some((route) => pathname.startsWith(route))
-  const isProtectedPortal = PROTECTED_PORTAL_ROUTES.some((route) => pathname.startsWith(route))
   const isApiRoute = pathname.startsWith('/api')
 
-  if (!isProtectedAdmin && !isProtectedPortal && !isApiRoute) {
+  if (!isProtectedAdmin && !isApiRoute) {
     return NextResponse.next()
   }
 
@@ -70,32 +68,6 @@ export async function middleware(request: NextRequest) {
     return response
   }
 
-  if (isProtectedPortal) {
-    if (!user) {
-      const loginUrl = new URL('/acceso', request.url)
-      loginUrl.searchParams.set('redirect', pathname)
-      return NextResponse.redirect(loginUrl)
-    }
-
-    const clientId = await getClientIdByUserId(supabase, user.id)
-    
-    if (!clientId) {
-      return NextResponse.redirect(new URL('/acceso', request.url))
-    }
-
-    const { data: client } = await supabase
-      .from('clients')
-      .select('portal_status')
-      .eq('id', clientId)
-      .maybeSingle()
-
-    if (!client || client.portal_status !== 'accepted') {
-      return NextResponse.redirect(new URL('/acceso', request.url))
-    }
-
-    return response
-  }
-
   if (isApiRoute) {
     if (!user && !isDemoSession) {
       return new NextResponse(JSON.stringify({ error: 'Unauthorized' }), {
@@ -118,31 +90,6 @@ export async function middleware(request: NextRequest) {
   return response
 }
 
-async function getClientIdByUserId(supabase: ReturnType<typeof createServerClient>, userId: string) {
-  const { data } = await supabase
-    .from('clients')
-    .select('id')
-    .eq('auth_user_id', userId)
-    .maybeSingle()
-
-  if (data?.id) {
-    return data.id
-  }
-
-  const { data: userData } = await supabase.auth.getUser()
-  const email = userData.user?.email?.toLowerCase()
-  
-  if (!email) return null
-
-  const { data: byEmail } = await supabase
-    .from('clients')
-    .select('id')
-    .ilike('email', email)
-    .maybeSingle()
-
-  return byEmail?.id || null
-}
-
 function isDemoEnabled() {
   const env = process.env.ENABLE_INTERNAL_DEMO_LOGIN || process.env.NEXT_PUBLIC_ENABLE_INTERNAL_DEMO_LOGIN || ''
   return env.toLowerCase() === '1' || env.toLowerCase() === 'true'
@@ -150,8 +97,9 @@ function isDemoEnabled() {
 
 export const config = {
   matcher: [
+    '/admin',
     '/admin/:path*',
-    '/portal/:path*',
+    '/api',
     '/api/:path*',
   ],
 }
